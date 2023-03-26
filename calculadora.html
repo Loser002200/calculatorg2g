@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<head>
+  <html lang="pt-br">
+  <meta charset="UTF-8">
+
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght&display=swap" rel="stylesheet">
+  <img src="div.png" alt="dkdolar" class="dkdolar">
+ 
+  <title>Calculadora</title>
+  
+    <title>Cotação do Dólar</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+  $(document).ready(function() {
+    $.ajax({
+      url: 'https://economia.awesomeapi.com.br/last/USD-BRL',
+      dataType: 'json',
+      success: function(data) {
+        $('#cotacao').text('R$ ' + data.USDBRL.ask);
+      }
+    });
+  });
+
+      </script>
+
+</head>
+
+
+    <body>
+      <header>
+        <div class="caixa">
+          <nav>
+            <ul>
+              <li><a href="teste.html">Passafome</a></li>
+
+              </ul>
+            </nav>
+        </div>
+      </header>
+
+
+      <div class="titulo">
+          <h1> G2G COMMON SELLER </h1>
+          <div class="dolar">
+            <p> Valor do Dolar </p>
+  
+            <p id="cotacao"></p>  
+        </div>
+ 
+        
+         <section class="tamanho-quadrado">
+
+            <div class="quantidade">
+                  <label for="quantidade">Quantidade:</label>
+                  <input type="number" id="quantidade" name="quantidade" required placeholder="Quantidade a vender">
+            </div>
+
+              <div class="valor">
+                  <label for="valor">Valor g2g:</label>
+                  <input type="number" id="valor" name="valor" required placeholder="Valor do g2g (cada)">
+            </div>
+
+            <button onclick="calcular()">Calcular</button>
+            <p id="resultado"></p>
+
+        </section>
+
+       
+
+      
+
+      <script class="resultado">
+            function calcular() {
+            var quantidade = document.getElementById("quantidade").value;
+            var valor = document.getElementById("valor").value;
+            var resultado = quantidade * valor;
+        
+            // dolar
+            $.ajax({
+              url: 'https://economia.awesomeapi.com.br/last/USD-BRL',
+              dataType: 'json',
+              success: function(data) {
+                var cotacaoDolar = data.USDBRL.high;
+                resultado = resultado * cotacaoDolar; // Multiplica o resultado pela cotação do dólar
+                resultado = resultado * 0.9; // Aplica o desconto de 10%
+                document.getElementById("resultado").innerHTML = "Valor em R$ " + resultado.toFixed(2);
+        }
+      });
+    }
+
+
+      
+      </script>
+    </body>
+</html>
