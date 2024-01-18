@@ -74,7 +74,7 @@
               success: function(data) {
                 var cotacaoDolar = data.USDBRL.high;
                 resultado = resultado * cotacaoDolar; // Multiplica o resultado pela cotação do dólar
-                resultado = resultado * 0.9; // Aplica o desconto de 10%
+                resultado = resultado * 0.89; // Aplica o desconto de 11%
                 document.getElementById("resultado").innerHTML = "Valor em R$ " + resultado.toFixed(2);
         }
       });
